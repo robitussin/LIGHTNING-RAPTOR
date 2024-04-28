@@ -1,31 +1,43 @@
 {% extends "base.html" %} {% block content %}
 
-<h2>Image Classifier</h2>
+<h2>RAG Interface</h2>
 
 <div>
-    <form id="upload-file" method="post" enctype="multipart/form-data">
-        <label for="Upload" class="upload-label">
-            Choose...
-        </label>
-        <input type="file" name="file" id="imageUpload" accept=".pdf, .txt">
-    </form>
+  <label for="userinput"> Ask a question... </label>
+  <input
+    type="text"
+    id="userinput"
+    placeholder="Enter your query here"
+    style="width: 300px"
+  />
 
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
-            </div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
-        </div>
+  <form id="upload-file" method="post" enctype="multipart/form-data">
+    <label for="imageUpload" class="upload-label"> Choose... </label>
+    <input type="file" name="file" id="imageUpload" accept=".txt, .pdf" />
+  </form>
+
+  <div class="image-section" style="display: none">
+    <div class="img-preview">
+      <div id="imagePreview"></div>
     </div>
+    <div>
+      <button type="button" class="btn btn-primary btn-lg" id="btn-upload">
+        Upload
+      </button>
+    </div>
+  </div>
 
-    <div class="loader" style="display:none;"></div>
+  <div class="loader" style="display: none"></div>
 
-    <h3 id="result">
-        <span> </span>
-    </h3>
+  <h3 id="result">
+    <span> </span>
+  </h3>
 
+  <!-- Generated Response Section -->
+  <h2>Generated Response</h2>
+  <textarea id="generatedResponse" readonly></textarea>
+
+  <div id="results"></div>
 </div>
 
 {% endblock %}
